@@ -47,6 +47,9 @@ curl --location 'localhost:8181/responses' \
 ]
 }'
 
+#run profiles test (hibernate-statistics :false)
+mvn spring-boot:run -Dspring-boot.run.profiles=test
+
 #to build project
 mvn clean compile install
 

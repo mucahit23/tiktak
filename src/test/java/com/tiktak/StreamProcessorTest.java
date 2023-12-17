@@ -1,17 +1,18 @@
 package com.tiktak;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StreamProcessorTest {
 
     @Test
-    public void testFixStream() {
+    void testFixStream() {
         Stream<Stream<String>> strStream = generateADummyTestStreamOfStream();
 
         final var integers = flatAndConvertToIntegerList(strStream);
@@ -21,7 +22,7 @@ public class StreamProcessorTest {
     }
 
     @Test
-    public void collectThreeElementsGroup() {
+    void collectThreeElementsGroup() {
         Stream<Stream<String>> strStream = generateADummyTestStreamOfStream();
 
         final var list = flatAndConvertToIntegerList(strStream);
@@ -45,7 +46,7 @@ public class StreamProcessorTest {
     private Stream<Stream<String>> generateADummyTestStreamOfStream() {
         return Stream.of(
                 Stream.of("0", "s1", null, "35", "90", "60"),
-                Stream.of("ttt", null, null , "15"),
+                Stream.of("ttt", null, null, "15"),
                 Stream.of("75", "95", "0", "0", null, "ssss", "0", "-15"),
                 Stream.of("25", "fgdfg", "", "105", "dsfdsf", "-5"));
     }
@@ -57,6 +58,4 @@ public class StreamProcessorTest {
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }
-
-    // Additional methods, including fixStream and processList...
 }

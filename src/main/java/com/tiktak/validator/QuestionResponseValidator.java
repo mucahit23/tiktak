@@ -2,7 +2,7 @@ package com.tiktak.validator;
 
 import com.tiktak.config.ImageProperties;
 import com.tiktak.dto.request.CarResponseDto;
-import com.tiktak.dto.request.QuestionResponseDTO;
+import com.tiktak.dto.response.QuestionResponseDTO;
 import com.tiktak.exception.BadRequestException;
 import com.tiktak.repos.QuestionRepository;
 import com.tiktak.service.MessageService;
@@ -26,7 +26,7 @@ public class QuestionResponseValidator {
     private final LogBean logBean;
     private final MessageService messageService;
 
-    public void validateQuestionResponses(CarResponseDto carResponseDto) {
+    public void validateQuestionResponses(final CarResponseDto carResponseDto) {
 
         if (!isValidResponseImages(carResponseDto)) {
             log.error("(traceId({})]) invalid response images for car-id : {}", logBean.getTraceId(), carResponseDto.getCarId());
@@ -46,22 +46,20 @@ public class QuestionResponseValidator {
     }
 
     private boolean isValidResponseImages(final CarResponseDto carResponseDto) {
-
         for (QuestionResponseDTO qr : carResponseDto.getQuestionResponses()) {
-            if (qr.isResponse() && (
-                    CollectionUtils.isEmpty(qr.getImageUrls())
-                            || qr.getImageUrls().size() < imageProperties.getMinCount()
-                            || qr.getImageUrls().size() > imageProperties.getMaxCount())) {
-                return false;
-            } else if (!qr.isResponse()) {
-                if (!CollectionUtils.isEmpty(qr.getImageUrls())) {
+            if (qr.isResponse()) {
+                if ( qr.getImageUrls() == null
+                        || qr.getImageUrls().size() < imageProperties.getMinCount()
+                        || qr.getImageUrls().size() > imageProperties.getMaxCount()) {
                     return false;
                 }
+            } else if (qr.getImageUrls() != null && !qr.getImageUrls().isEmpty()) {
+                return false;
             }
-
         }
         return true;
     }
+
 
     private boolean isValidQuestions(final List<Long> questionIds) {
         final var validCount = questionRepository.getValidQuestionCount(questionIds);

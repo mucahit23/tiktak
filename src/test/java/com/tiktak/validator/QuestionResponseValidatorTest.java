@@ -3,7 +3,7 @@ package com.tiktak.validator;
 
 import com.tiktak.config.ImageProperties;
 import com.tiktak.dto.request.CarResponseDto;
-import com.tiktak.dto.request.QuestionResponseDTO;
+import com.tiktak.dto.response.QuestionResponseDTO;
 import com.tiktak.exception.BadRequestException;
 import com.tiktak.repos.QuestionRepository;
 import com.tiktak.service.MessageService;

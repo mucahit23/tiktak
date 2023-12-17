@@ -2,4 +2,8 @@ spring:
   jpa:
     properties:
       hibernate:
-        generate_statistics: false  # Override for the test environment
+        jdbc:
+          batch_size: 1000
+        order_inserts: true
+        order_updates: true  # Added this line
+        generate_statistics: false

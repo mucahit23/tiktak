@@ -1,5 +1,6 @@
 package com.tiktak.dto.request;
 
+import com.tiktak.dto.response.QuestionResponseDTO;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

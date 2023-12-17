@@ -1,4 +1,4 @@
-package com.tiktak.dto.request;
+package com.tiktak.dto.response;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

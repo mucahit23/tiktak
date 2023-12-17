@@ -11,9 +11,16 @@ public class TiktakUtils {
 
     private final static int MAX_EXCEPTION_LENGTH = 4096;
 
-    public static <T> GenericResponse<T> generateGenericResponse(boolean result, T content) {
+    public static <T> GenericResponse<T> generateGenericErrorResponse(T content) {
+        GenericResponse<T> genericResponse = generateGenericResponse(content);
+
+        genericResponse.setSuccess(Boolean.FALSE);
+
+        return genericResponse;
+    }
+
+    public static <T> GenericResponse<T> generateGenericResponse(T content) {
         return GenericResponse.<T>builder()
-                .success(result)
                 .content(content)
                 .zonedDateTime(ZonedDateTime.now())
                 .build();

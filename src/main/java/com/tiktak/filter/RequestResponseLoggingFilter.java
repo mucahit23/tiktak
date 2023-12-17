@@ -20,13 +20,13 @@ public class RequestResponseLoggingFilter implements Filter {
             ServletResponse response,
             FilterChain chain) throws IOException, ServletException {
 
+        // Çok Kritik olması durumunda buradaki request ve response asenkrın olarak db ye ya da başka bir log izleme framwrokuna loglanabilir.
+        // İşlem asenkron yapılmalıdır. Db ye loglanacaksa jsonb type olması uygun olacaktır.
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         log.info("Logging Request  {} : {}", req.getMethod(), req.getRequestURI());
         chain.doFilter(request, response);
         log.info("Logging Response :{}", res.getContentType());
     }
-
-    // other methods
 }
 

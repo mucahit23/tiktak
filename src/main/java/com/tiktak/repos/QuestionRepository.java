@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     @Query("select count(qr.id) from Question qr where qr.id in :questionIds")
-    int getValidQuestionCount(@Param("questionIds") List<Long> questionIds);
+    int getValidQuestionCount(@Param("questionIds") final List<Long> questionIds);
 
+    List<Question> findAll();
 }

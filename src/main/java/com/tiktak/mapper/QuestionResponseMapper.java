@@ -1,6 +1,6 @@
 package com.tiktak.mapper;
 
-import com.tiktak.dto.request.QuestionResponseDTO;
+import com.tiktak.dto.response.QuestionResponseDTO;
 import com.tiktak.dto.response.QuestionResponseInfo;
 import com.tiktak.entity.Question;
 import com.tiktak.entity.QuestionResponse;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 @Mapper(componentModel = "spring")
 public abstract class QuestionResponseMapper {
 
-    public abstract List<QuestionResponseInfo> questionResponseListToQuestionResponseDtoList(List<QuestionResponse> questionResponses);
+    public abstract List<QuestionResponseInfo> questionResponseListToQuestionResponseDtoList(final List<QuestionResponse> questionResponses);
 
     @Mapping(target = "questionInfo.id", source = "question.id")
     @Mapping(target = "questionInfo.questionText", source = "question.questionText")
     @Mapping(target = "responseImageUrls", expression = "java(mapImageUrls(questionResponse.getResponseImageSet()))")
-    public abstract QuestionResponseInfo questionResponseToQuestionResponseDto(QuestionResponse questionResponse);
+    public abstract QuestionResponseInfo questionResponseToQuestionResponseDto(final QuestionResponse questionResponse);
 
     protected Set<String> mapImageUrls(Set<ResponseImage> responseImages) {
         if (responseImages == null) {
@@ -35,7 +35,7 @@ public abstract class QuestionResponseMapper {
                 .collect(Collectors.toSet());
     }
 
-    public abstract Set<QuestionResponse> carResponseDTOToQuestionResponseList(List<QuestionResponseDTO> questionResponseDTOList);
+    public abstract Set<QuestionResponse> carResponseDTOToQuestionResponseList(final List<QuestionResponseDTO> questionResponseDTOList);
 
     @Mapping(target = "question", expression = "java(mapQuestion(questionResponseDTO))")
     public abstract QuestionResponse questionResponseDTOToQuestionResponse(QuestionResponseDTO questionResponseDTO);
@@ -50,7 +50,9 @@ public abstract class QuestionResponseMapper {
     }
 
     protected Set<ResponseImage> mapImageSet(QuestionResponseDTO questionResponseDTO, QuestionResponse questionResponse) {
-        if (questionResponseDTO == null || CollectionUtils.isEmpty(questionResponseDTO.getImageUrls())) {
+        if (questionResponseDTO == null
+                || questionResponseDTO.getImageUrls() == null
+                || CollectionUtils.isEmpty(questionResponseDTO.getImageUrls())) {
             return null;
         }
 

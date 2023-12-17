@@ -14,7 +14,8 @@ import java.time.ZonedDateTime;
 @AllArgsConstructor
 public class GenericResponse<T> implements Serializable {
 
-    private boolean success;
+    @Builder.Default
+    private boolean success = Boolean.TRUE;
 
     private T content;
 

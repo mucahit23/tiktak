@@ -1,11 +1,9 @@
 package com.tiktak;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
 
 
 public class StreamProcessor {
@@ -25,6 +23,7 @@ public class StreamProcessor {
         // Process the list to group by 3s and sum > 90
         return processList(integers);
     }
+
     // group three element in each group
     // add to list if group elements sum >= 90
     private static List<Integer> processList(List<Integer> list) {
@@ -39,15 +38,15 @@ public class StreamProcessor {
     public static void main(String[] args) {
         // Example usage
         Stream<Stream<String>> exampleStream = Stream.of(
-            Stream.of("0", "s1", null, "35", "90", "60"),
-            Stream.of("ttt", null, null , "15"),
-            Stream.of("75", "95", "0", "0", null, "ssss", "0", "-15"),
-            Stream.of("25", "fgdfg", "", "105", "dsfdsf", "-5")
-        //    Stream.of("25", "fgdfg", "", "105", "dsfdsf", "-5","-5")
+                Stream.of("0", "s1", null, "35", "90", "60"),
+                Stream.of("ttt", null, null, "15"),
+                Stream.of("75", "95", "0", "0", null, "ssss", "0", "-15"),
+                Stream.of("25", "fgdfg", "", "105", "dsfdsf", "-5")
+                //    Stream.of("25", "fgdfg", "", "105", "dsfdsf", "-5","-5")
         );
 
         List<Integer> result = fixStream(exampleStream);
-        System.out.println("************ result *************\n"+result);
+        System.out.println("************ result *************\n" + result);
 
         /*
         printed output:

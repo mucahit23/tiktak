@@ -22,7 +22,7 @@ public class GlobalExceptionHandler {
                 .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .build();
 
-        return TiktakUtils.generateGenericResponse(false, errorResponse);
+        return TiktakUtils.generateGenericErrorResponse(errorResponse);
     }
 
     @ExceptionHandler(BadRequestException.class)
@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
                 .httpStatus(HttpStatus.BAD_REQUEST.value())
                 .build();
 
-        return TiktakUtils.generateGenericResponse(false, errorResponse);
+        return TiktakUtils.generateGenericErrorResponse(errorResponse);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -47,7 +47,7 @@ public class GlobalExceptionHandler {
             String errorMessage = error.getDefaultMessage();
             errorResponse.addFieldError(com.tiktak.dto.response.base.FieldError.builder().field(fieldName).errorMessage(errorMessage).build());
         });
-        return TiktakUtils.generateGenericResponse(false, errorResponse);
+        return TiktakUtils.generateGenericErrorResponse(errorResponse);
     }
 
     @ExceptionHandler(Throwable.class)
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
         final ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         errorResponse.setMessage(TiktakUtils.getFormattedMessage(exception.getMessage()));
-        return TiktakUtils.generateGenericResponse(false, errorResponse);
+        return TiktakUtils.generateGenericErrorResponse(errorResponse);
     }
 
 }

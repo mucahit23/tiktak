@@ -2,7 +2,7 @@ package com.tiktak.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tiktak.dto.request.CarResponseDto;
-import com.tiktak.dto.request.QuestionResponseDTO;
+import com.tiktak.dto.response.QuestionResponseDTO;
 import com.tiktak.dto.response.QuestionResponseInfo;
 import com.tiktak.service.QuestionResponseService;
 import org.junit.jupiter.api.BeforeEach;
