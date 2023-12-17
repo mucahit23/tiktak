@@ -1,0 +1,74 @@
+{
+	"info": {
+		"_postman_id": "79f7b2cc-425e-4e2a-b6f8-6743d3ca1248",
+		"name": "tiktak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1866653"
+	},
+	"item": [
+		{
+			"name": "create-an-expertise",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"carId\": 123456,\r\n    \"questionResponses\": [\r\n        {\r\n            \"questionId\": 1,\r\n            \"response\": true,\r\n            \"imageUrls\": [\r\n                \"https://example.com/image11111111111.jpg\",\r\n                \"https://example.com/ima11111111111111113.jpg\",\r\n                \"https://example.com/image11111111111.jpg\"\r\n            ],\r\n            \"description\": \"Description for question 1\"\r\n        },\r\n        {\r\n            \"questionId\": 2,\r\n            \"response\": false,\r\n            \"description\": \"Description for question 2\"\r\n        },\r\n        {\r\n            \"questionId\": 3,\r\n            \"response\": true,\r\n            \"imageUrls\": [\r\n                \"https://example.com/image5431111111111111142.jpg\",\r\n                \"https://example.com/imagetre42.jpg\"\r\n            ],\r\n            \"description\": \"Description for question 3\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8181/responses",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"responses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-last-expetise-of-car",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/responses/123456",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"responses",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-all-questions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8181/questions",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"questions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
